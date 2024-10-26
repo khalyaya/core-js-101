@@ -19,7 +19,7 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(width, height ) {
+function getRectangleArea(width, height) {
   return width * height;
 }
 
@@ -53,8 +53,8 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  const avg =  Math.floor((value1+value2) / 2);
-  if(avg > Number.MAX_VALUE){
+  const avg = Math.floor((value1 + value2) / 2);
+  if (avg > Number.MAX_VALUE) {
     return Number.MAX_VALUE;
   }
   return avg;
@@ -75,8 +75,8 @@ function getAverage(value1, value2) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(x1, y1, x2, y2 ) {
-  const distance = Math.sqrt((x2 - x1)**2 + (y2 - y1)**2);
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
   return distance;
 }
 
@@ -92,9 +92,8 @@ function getDistanceBetweenPoints(x1, y1, x2, y2 ) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot( a, b ) {
-    return  -b /a;
-
+function getLinearEquationRoot(a, b) {
+  return -b / a;
 }
 
 
@@ -116,12 +115,12 @@ function getLinearEquationRoot( a, b ) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors( x1, y1, x2, y2) {
+function getAngleBetweenVectors(x1, y1, x2, y2) {
   const dotProd = x1 * x2 + y1 * y2;
-  const moduleVectorOne = Math.sqrt((x1**2) + (y1**2));
-  const moduleVectorTwo = Math.sqrt((x2**2) + (y2**2));
+  const moduleVectorOne = Math.sqrt((x1 ** 2) + (y1 ** 2));
+  const moduleVectorTwo = Math.sqrt((x2 ** 2) + (y2 ** 2));
 
-  const angle = Math.acos(dotProd /(moduleVectorOne * moduleVectorTwo));
+  const angle = Math.acos(dotProd / (moduleVectorOne * moduleVectorTwo));
 
   return angle;
 }
@@ -138,11 +137,11 @@ function getAngleBetweenVectors( x1, y1, x2, y2) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit( value) {
+function getLastDigit(value) {
   const numberString = value.toString();
   const lastChar = numberString[numberString.length - 1];
-  const lastNum = parseInt(lastChar);
-  return lastNum ;
+  const lastNum = parseInt(lastChar, 10);
+  return lastNum;
 }
 
 
@@ -174,9 +173,9 @@ function parseNumberFromString(value) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(a, b, c ) {
-    const diagonal = Math.sqrt(Math.pow(a,2) + Math.pow(b,2) + Math.pow(c,2));
-    return diagonal;
+function getParallelepipedDiagonal(a, b, c) {
+  const diagonal = Math.sqrt(a ** 2 + b ** 2 + c ** 2);
+  return diagonal;
 }
 
 
@@ -197,11 +196,9 @@ function getParallelepipedDiagonal(a, b, c ) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(num, pow ) {
-
+function roundToPowerOfTen(num, pow) {
   return (Math.round(num / 10 ** pow)) * 10 ** pow;
-
-  }
+}
 
 /**
  * Returns true is the number is prime; otherwise false.
@@ -220,19 +217,17 @@ function roundToPowerOfTen(num, pow ) {
  *   16 => false
  *   17 => true
  */
-function isPrime( n ){
-  const oddArr = [3,5,7,9];
-  if(n % 2 != 0 || n === 2){
-    for(let i = 0; i < oddArr.length; i++){
-
-      if(n % oddArr[i] === 0 && oddArr[i] != n){
+function isPrime(n) {
+  const oddArr = [3, 5, 7, 9];
+  if (n % 2 !== 0 || n === 2) {
+    for (let i = 0; i < oddArr.length; i += 1) {
+      if (n % oddArr[i] === 0 && oddArr[i] !== n) {
         return false;
       }
     }
-      return true;
+    return true;
   }
   return false;
-
 }
 
 /**
@@ -251,12 +246,10 @@ function isPrime( n ){
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  if(typeof(value) === 'number' || value instanceof Number || !isNaN(Number(value))){
+  if (typeof (value) === 'number' || value instanceof Number || !Number.isNaN(Number(value))) {
     return Number(value);
   }
-  else{
-    return def;
-  }
+  return def;
 }
 
 module.exports = {

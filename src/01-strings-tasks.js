@@ -18,9 +18,9 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(value1, value2 ) {
- const stringConcat = value1.concat('', value2);
- return stringConcat;
+function concatenateStrings(value1, value2) {
+  const stringConcat = value1.concat('', value2);
+  return stringConcat;
 }
 
 
@@ -36,8 +36,7 @@ function concatenateStrings(value1, value2 ) {
  *   ''      => 0
  */
 function getStringLength(value) {
-  const length = value.length;
-  return length;
+  return value.length;
 }
 
 /**
@@ -68,7 +67,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  const nameOnly = value.replace('Hello, ', '').replace('!','');
+  const nameOnly = value.replace('Hello, ', '').replace('!', '');
   return nameOnly;
 }
 
@@ -116,11 +115,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  let result = '';
-  for(let i = 0; i < count; i++){
-    result += value;
-  }
-  return result;
+  return new Array(count).fill(value).join('');
 }
 
 /**
@@ -152,7 +147,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  const newString = str.replace('<', '').replace('>','');
+  const newString = str.replace('<', '').replace('>', '');
   return newString;
 }
 
@@ -190,7 +185,6 @@ function convertToUpperCase(str) {
 function extractEmails(str) {
   const newArr = str.split(';');
   return newArr;
-
 }
 
 /**
@@ -217,34 +211,33 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
+  let rect = '';
+  rect += '┌';
+  for (let i = 0; i < width - 2; i += 1) {
+    rect += '─';
+  }
 
-    let rect = '';
-    rect += '┌';
-    for(let i = 0; i < width - 2; i++){
-      rect += '─';
+  rect += '┐\n';
+
+
+  for (let j = 0; j < height - 2; j += 1) {
+    rect += '│';
+    for (let i = 0; i < width - 2; i += 1) {
+      rect += ' ';
     }
-
-    rect += '┐\n'
-
-
-    for(let j = 0; j < height - 2; j++){
-      rect += '│';
-      for(let i = 0; i < width - 2; i++){
-        rect += ' '
-      }
-      rect += '│\n';
-    }
+    rect += '│\n';
+  }
 
 
-    rect += '└';
+  rect += '└';
 
-    for(let i = 0; i < width - 2; i++){
-      rect += '─';
-    }
+  for (let i = 0; i < width - 2; i += 1) {
+    rect += '─';
+  }
 
-    rect += '┘\n'
+  rect += '┘\n';
 
-    return rect;
+  return rect;
 }
 
 
@@ -264,33 +257,28 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13( str) {
-  const newString = str.split('').map((char) =>{
+function encodeToRot13(str) {
+  const newString = str.split('').map((char) => {
     const charCode = char.charCodeAt(0);
 
-  if (charCode >= 65 && charCode <= 90){
+    if (charCode >= 65 && charCode <= 90) {
+      if (charCode > 77) {
+        return String.fromCharCode(charCode - 13);
+      }
+      return String.fromCharCode(charCode + 13);
+    }
 
-  if(charCode > 77){
-    return String.fromCharCode(charCode - 13);
-  }
-  else{
-    return String.fromCharCode(charCode + 13);
-  }
-}
+    if (charCode >= 97 && charCode <= 122) {
+      if (charCode > 109) {
+        return String.fromCharCode(charCode - 13);
+      }
+      return String.fromCharCode(charCode + 13);
+    }
 
-if (charCode >= 97 && charCode <= 122){
+    return char;
+  });
 
-  if(charCode > 109){
-    return String.fromCharCode(charCode - 13);
-  }
-  else{
-    return String.fromCharCode(charCode + 13);
-  }
-}
- return char;
-});
-
- const encodeString = newString.join('')
+  const encodeString = newString.join('');
   return encodeString;
 }
 
@@ -337,15 +325,16 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const cards =['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
-  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
-  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
-  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'];
-    for(let i = 0; i < cards.length; i++){
-      if(value === cards[i]){
+  const cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  for (let i = 0; i < cards.length; i += 1) {
+    if (value === cards[i]) {
       return i;
-      }
     }
+  }
+  return -1;
 }
 
 
